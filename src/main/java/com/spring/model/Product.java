@@ -11,7 +11,27 @@ public class Product {
 	private String description;
 	private double price;
 	private int instock;
+	@Column(name="category_id", insertable=false, updatable=false)
+	private int category_id;
 	
+	
+	@Column(name="supplier_id", insertable=false, updatable=false)
+	private int supplier_id;
+	
+	
+	public int getCategory_id() {
+		return category_id;
+	}
+	public void setCategory_id(int category_id) {
+		this.category_id = category_id;
+	}
+	public int getSupplier_id() {
+		return supplier_id;
+	}
+	public void setSupplier_id(int supplier_id) {
+		this.supplier_id = supplier_id;
+	}
+
 	
 	
 	 @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.model.Category;
 
+@SuppressWarnings("deprecation")
 @Repository
 public class CategoryDAOImpl implements CategoryDAO {
 
@@ -22,21 +24,22 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public boolean saveCategory(Category category) {
 		
 		 sessionFactory.getCurrentSession().saveOrUpdate(category);
-		/*Session session=sessionFactory.getCurrentSession();
-		session.saveOrUpdate(category);
-		Transaction tx=session.beginTransaction();
-		tx.commit();
-		*/
 		
 		
 		
 		 return true;
 	}
 
+
+
+	@Transactional
 	public List<Category> list() {
-		Query qry =sessionFactory.getCurrentSession().createQuery("from category");
-		List l = qry.list();
-		return l;
+		@SuppressWarnings("unchecked")
+		List<Category> listCategory = (List<Category>) sessionFactory.getCurrentSession()
+				.createCriteria(Category.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+
+		return listCategory;
 	}
 
 }

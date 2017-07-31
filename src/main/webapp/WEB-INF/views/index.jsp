@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <html lang="en">
 <head>
   <title>Bootstrap Example</title>
@@ -29,11 +33,25 @@
     </ul>
   </div>
 </nav>
-  
+  ${message}
 <div class="container">
   <h3>Navbar With Dropdown</h3>
   <p>This example adds a dropdown menu for the "Page 1" button in the navigation bar.</p>
 </div>
-
+<c:choose>
+		<c:when test="${ProductPageClicked}">
+			<c:import url="/WEB-INF/views/ProductPage.jsp"></c:import>
+		</c:when>
+	</c:choose>
+	<c:choose>
+		<c:when test="${CategoryPageClicked}">
+			<c:import url="/WEB-INF/views/CategoryPage.jsp"></c:import>
+		</c:when>
+	</c:choose>
+	<c:choose>
+		<c:when test="${SupplierPageClicked}">
+			<c:import url="/WEB-INF/views/SupplierPage.jsp"></c:import>
+		</c:when>
+	</c:choose>
 </body>
 </html>

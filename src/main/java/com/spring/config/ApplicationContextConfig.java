@@ -17,6 +17,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.spring.dao.CategoryDAO;
 import com.spring.dao.CategoryDAOImpl;
+import com.spring.dao.ProductDAO;
+import com.spring.dao.ProductDAOImpl;
 import com.spring.dao.SupplierDAO;
 import com.spring.dao.SupplierDAOImpl;
 import com.spring.dao.UserDAO;
@@ -82,6 +84,13 @@ public class ApplicationContextConfig {
 	public UserDAO getUserDao(SessionFactory sessionFactory) {
 	    return new UserDAOImpl();
 	}
+	
+	@Autowired
+	@Bean(name = "productDAO")
+	public ProductDAO getProductDao(SessionFactory sessionFactory) {
+	    return new ProductDAOImpl();
+	}
+	
 	
 	@Autowired
 	@Bean(name="categoryDAO")

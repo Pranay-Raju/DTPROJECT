@@ -1,65 +1,37 @@
 package com.spring.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.dao.CategoryDAO;
+import com.spring.dao.ProductDAO;
 import com.spring.dao.SupplierDAO;
-import com.spring.model.Category;
-import com.spring.model.Supplier;
 
 @Controller
 public class HomeController {
 
-	
+
+	@Autowired
+	ProductDAO productDAO;
+
 	@Autowired
 	CategoryDAO categoryDAO;
 	@Autowired
 	SupplierDAO supplierDAO;
 	
-	@RequestMapping(value="/",method=RequestMethod.GET)
-	public String getIndexPage()
-	{
-		return "index";
-		
+	
+	@RequestMapping("/")
+	public ModelAndView dynamicNav(HttpSession session) {
+		ModelAndView mv = new ModelAndView("index");
+		session.setAttribute("categoryList", categoryDAO.list());
+	
+		return mv;
 	}
-	@RequestMapping(value="category",method=RequestMethod.GET)
-	public String getCategoryPage(@ModelAttribute("category") Category category)
-	{
-		return "CategoryPage";
-		
-	}
-	
-	
-	
-	@RequestMapping(value="saveCategory",method=RequestMethod.POST)
-	public String insertCategory(@ModelAttribute("category") Category category)
-	{
-		categoryDAO.saveCategory(category);
-		return "redirect:/";
-	   }
-	
-	/*
-	=============================*/
-	@RequestMapping(value="supplier",method=RequestMethod.GET)
-	public String getSupplierPage(@ModelAttribute("supplier") Supplier supplier)
-	{
-		return "SupplierPage";
-		
-	}
-	
-	
-	
-	@RequestMapping(value="saveSupplier",method=RequestMethod.POST)
-	public String insertSupplier(@ModelAttribute("supplier") Supplier supplier)
-	{
-		supplierDAO.saveSupplier(supplier);
-		return "redirect:/";
-	   }
-	
+
 	
 	
 	
