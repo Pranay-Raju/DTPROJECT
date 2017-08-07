@@ -13,7 +13,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.spring.dao.CategoryDAO;
 import com.spring.dao.CategoryDAOImpl;
@@ -27,21 +27,16 @@ import com.spring.dao.UserDAOImpl;
 @Configuration
 @ComponentScan("com.spring")
 @EnableTransactionManagement
-public class ApplicationContextConfig {
+@EnableWebMvc
+public class ApplicationContextConfig  {
 	
-	 @Bean(name = "viewResolver")
-	    public InternalResourceViewResolver getViewResolver() {
-	        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-	    	viewResolver.setPrefix("/WEB-INF/views/");
-			viewResolver.setSuffix(".jsp");
-	        return viewResolver;
-	    }
-	     
+	
+     
 	 @Bean(name = "dataSource")
 		public DataSource getDataSource() {
 			DriverManagerDataSource dataSource = new DriverManagerDataSource();
 			dataSource.setDriverClassName("org.h2.Driver");
-			dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
+			dataSource.setUrl("jdbc:h2:tcp://localhost/~/piyush");
 			dataSource.setUsername("sa");
 			dataSource.setPassword("");
 			System.out.println("Datasource");
@@ -80,8 +75,8 @@ public class ApplicationContextConfig {
 			return transactionManager;
 		}
 	@Autowired
-	@Bean(name = "userDao")
-	public UserDAO getUserDao(SessionFactory sessionFactory) {
+	@Bean(name = "userDAO")
+	public UserDAO getUserDAO(SessionFactory sessionFactory) {
 	    return new UserDAOImpl();
 	}
 	

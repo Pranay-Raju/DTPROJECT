@@ -1,37 +1,77 @@
-/**
- * 
- */
+
 package com.spring.dao;
 
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.model.Category;
 import com.spring.model.Product;
 
+@SuppressWarnings("deprecation")
 @Repository
 public class ProductDAOImpl implements ProductDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
-	
-	
-	
+
 	@Transactional
 	public boolean saveProduct(Product product) {
 		sessionFactory.getCurrentSession().saveOrUpdate(product);
 		return true;
 	}
-	
-	@SuppressWarnings({ "unchecked", "deprecation" })
+
+	@SuppressWarnings({ "unchecked" })
 	@Transactional
 	public List<Product> list() {
-	List<Product>product=	sessionFactory.getCurrentSession().createCriteria(Product.class).list();
+		List<Product> product = sessionFactory.getCurrentSession().createCriteria(Product.class).list();
 		return product;
 	}
 
+	@Transactional
+	public Product getProductById(int product_id) {
+		String hql = "from" + " Product" + " where id=" + product_id;
+		@SuppressWarnings("rawtypes")
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+
+		@SuppressWarnings("unchecked")
+		List<Product> listProduct = (List<Product>) query.list();
+
+		if (listProduct != null && !listProduct.isEmpty()) {
+			return listProduct.get(0);
+		}
+
+		return null;
+	}
+
+	@Transactional
+	public Product removeProducyById(int product_id) {
+		Product ProductToDelete = new Product();
+		ProductToDelete.setId(product_id);
+		sessionFactory.getCurrentSession().delete(ProductToDelete);
+		return ProductToDelete;
+	}
+
+	@Transactional
+	public List<Product> getProductByCategory(int category_id) {
+		String hql = "from" + " Product" + " where id=" +category_id;
+		@SuppressWarnings("rawtypes")
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+
+		
+		@SuppressWarnings("unchecked")
+		List<Product> listProduct = (List<Product>) query.list();
+
+		if (listProduct != null && !listProduct.isEmpty()) {
+			return (List<Product>) listProduct.get(0);
+		}
+
+
+		return null;
+	}
 }

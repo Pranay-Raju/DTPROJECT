@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Category {
@@ -12,8 +13,12 @@ public class Category {
 	@GeneratedValue
 	@Column(name="category_id")
 	private int id;
+	
+	@NotEmpty(message="Category details is mandatory")
 	private String categoryName;
-	private String categoryDescription;
+	 
+	 @NotEmpty(message="Category Description is mandatory")
+	 private String categoryDescription;
 
 	
 	 @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", cascade = CascadeType.ALL)

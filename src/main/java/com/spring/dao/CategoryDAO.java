@@ -10,4 +10,9 @@ public interface CategoryDAO {
 	
 	public List<Category> list();
 	
+	public Category getCategoryById(int category_id);
+	
+	public Category removeCategoryById(int category_id);
+	
+	
 }

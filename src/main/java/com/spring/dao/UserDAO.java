@@ -6,12 +6,11 @@ import com.spring.model.User;
 
 public interface UserDAO {
 	
+	  public boolean saveOrUpdate(User user);
 	  public List<User> list();
-	     
-	    public User get(int id);
-	     
-	    public void saveOrUpdate(User user);
-	     
-	    public void delete(int id);
+	  public User getUserById(int user_id);
+	  public void removeUserById(int user_id);
+	  
+	  public User get(String email);
 	}
 

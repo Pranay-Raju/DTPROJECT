@@ -42,4 +42,34 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return listCategory;
 	}
 
+
+
+
+	@Transactional
+	public Category getCategoryById(int category_id) {
+		String hql = "from"+" Category"+" where id=" + category_id;
+		@SuppressWarnings("rawtypes")
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		
+		@SuppressWarnings("unchecked")
+		List<Category> listCategory = (List<Category>) query.list();
+		
+		if (listCategory != null && !listCategory.isEmpty()) {
+			return listCategory.get(0);
+		}
+		
+		return null;
+	}
+
+
+
+	@Transactional
+	public Category removeCategoryById(int category_id) {
+		Category CategoryToDelete = new Category();
+		CategoryToDelete.setId(category_id);
+		sessionFactory.getCurrentSession().delete(CategoryToDelete);
+		return CategoryToDelete;
+	}
+	
+
 }

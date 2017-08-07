@@ -1,6 +1,8 @@
 package com.spring.model;
 
-import javax.persistence.*; 
+import javax.persistence.*;
+
+import org.springframework.web.multipart.MultipartFile; 
 @Entity
 public class Product {
 	
@@ -11,14 +13,20 @@ public class Product {
 	private String description;
 	private double price;
 	private int instock;
-	@Column(name="category_id", insertable=false, updatable=false)
+	
 	private int category_id;
 	
-	
-	@Column(name="supplier_id", insertable=false, updatable=false)
 	private int supplier_id;
 	
+	@Transient
+	MultipartFile image;
 	
+	public MultipartFile getImage() {
+		return image;
+	}
+	public void setImage(MultipartFile image) {
+		this.image = image;
+	}
 	public int getCategory_id() {
 		return category_id;
 	}
@@ -34,17 +42,15 @@ public class Product {
 
 	
 	
-	 @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	   @JoinColumn(name = "category_id", nullable = false)
-	    private Category category;
-
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "category_id", updatable = false, insertable = false, nullable = false)
+	private Category category;
 	 
 	 
-	 
-	 @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	   @JoinColumn(name = "supplier_id", nullable = false)
-	 private Supplier supplier;
-	 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "supplier_id", nullable = false, updatable = false, insertable = false)
+	private Supplier supplier;
+	
 	 
 	public Supplier getSupplier() {
 		return supplier;
