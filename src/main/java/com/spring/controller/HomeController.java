@@ -1,8 +1,6 @@
 package com.spring.controller;
 
 import java.util.Collection;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.dao.CategoryDAO;
 import com.spring.dao.ProductDAO;
 import com.spring.dao.SupplierDAO;
 import com.spring.dao.UserDAO;
-import com.spring.model.Category;
 import com.spring.model.Product;
 import com.spring.model.User;
 
@@ -70,7 +66,8 @@ public class HomeController {
     
     
     
-    @RequestMapping(value = "/login_session_attributes")
+    @SuppressWarnings("unchecked")
+	@RequestMapping(value = "/login_session_attributes")
 	public String login_session_attributes(HttpSession session,Model model) {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
 		User user = userDAO.get(email);

@@ -11,7 +11,8 @@
 
   <link rel="stylesheet" href="<c:url value="/resources/lib/bootstrap-3.3.6/css/bootstrap.min.css"/>">
 	
-<link rel="stylesheet" href="<c:url value="/resources/lib/jquery/jquery-ui-1.10.4.custom --%>.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/lib/jquery/jquery-ui-1.10.4.custom.css"/>"> --%>
+
 
 <style type="text/css">
 th {

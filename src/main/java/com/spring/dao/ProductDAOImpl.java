@@ -10,7 +10,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.spring.model.Category;
 import com.spring.model.Product;
 
 @SuppressWarnings("deprecation")
@@ -57,6 +56,7 @@ public class ProductDAOImpl implements ProductDAO {
 		return ProductToDelete;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Transactional
 	public List<Product> getProductByCategory(int category_id) {
 		String hql = "from" + " Product" + " where id=" +category_id;
@@ -64,7 +64,6 @@ public class ProductDAOImpl implements ProductDAO {
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 
 		
-		@SuppressWarnings("unchecked")
 		List<Product> listProduct = (List<Product>) query.list();
 
 		if (listProduct != null && !listProduct.isEmpty()) {

@@ -8,7 +8,6 @@ com\spring\dao\ProductDAO.class
 com\spring\dao\UserDAO.class
 com\spring\model\Product.class
 com\spring\dao\CategoryDAOImpl.class
-com\spring\config\SpringWebAppInitializer.class
 com\spring\dao\CategoryDAO.class
 com\spring\model\Supplier.class
 com\spring\dao\ProductDAOImpl.class

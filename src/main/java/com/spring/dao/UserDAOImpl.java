@@ -43,6 +43,7 @@ public class UserDAOImpl implements UserDAO {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Transactional
 	public User get(String email) {
 		Criteria c = sessionFactory.getCurrentSession().createCriteria(User.class);

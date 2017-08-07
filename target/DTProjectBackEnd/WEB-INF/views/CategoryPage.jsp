@@ -33,14 +33,17 @@
 	<div class="form-group">
 		<label for="category Name" class="col-xs-4 control-label">Category Name</label>
 		<div class="col-xs-4">
-			<form:input name="id" path="categoryName" placeholder="Category Name" class="form-control" />
+			<form:input name="categoryName" path="categoryName" placeholder="Category Name" class="form-control" />
+	        <form:errors path="categoryName" cssStyle="color:#ff0000"></form:errors>
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label for="code" class="col-xs-4 control-label">Category description</label>
 		<div class="col-xs-4">
-			<form:input name="categoryDescription" id="merocode" path="categoryDescription" placeholder="Category Description" maxlength="15" class="form-control" />
+			<form:input name="categoryDescription"  path="categoryDescription" placeholder="Category Description" class="form-control" />
+			  <form:errors path="categoryDescription" cssStyle="color:#ff0000"></form:errors>
+		
 		</div>
 	</div>
 
@@ -66,14 +69,15 @@
 </form:form>
 
 
-		<table class="table table-striped table-bordered" border="1">
+
+		<table class="table table-striped table-bordered"  style="width: 80%">
 			<thead>
 				<tr>
-					<th width="2%">S.N</th>
+					<th width="2%" style="background-color: blue;">S.N</th>
 					<th width="2%">Category ID</th>
 					<th width="2%">Category Name</th>
 					<th width="2%">Category Description</th>
-					<th width="2%"></th>
+					<th width="2%">Category Action</th>
 				</tr>
 			</thead>
 			<tbody>
