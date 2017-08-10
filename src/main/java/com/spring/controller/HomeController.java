@@ -3,6 +3,8 @@ package com.spring.controller;
 import java.util.Collection;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,6 +27,8 @@ import com.spring.model.User;
 @Controller
 public class HomeController {
 
+	 static Logger logger = LoggerFactory.getLogger(HomeController.class);
+
 
 	@Autowired
 	ProductDAO productDAO;
@@ -44,7 +48,8 @@ public class HomeController {
     {
     	session.setAttribute("categoryList", categoryDAO.list());
     	session.setAttribute("ProductList",productDAO.list());
-    	
+    	/*session.setAttribute("ListProduct", productDAO.getProductByCategoryID(id));
+    	*/
     	
        return "WelcomePage";
     }
@@ -139,7 +144,17 @@ public class HomeController {
 	    }
 	
 	
-	}
 	
 	
 	
+@RequestMapping(value ="nav/{id}" )
+public String ShowProductByCategory(@PathVariable("id") int id,RedirectAttributes attributes,Model m) {
+	
+	logger.info("Listing the Product by Category ID:");
+    m.addAttribute("UserClickedshowproduct", "true");
+    m.addAttribute("ListProduct", productDAO.getProductByCategoryID(id));
+    logger.info("Listed the product by Category ID:"+id);
+	return "WelcomePage";
+}
+
+}

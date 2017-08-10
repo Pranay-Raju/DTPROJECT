@@ -59,8 +59,8 @@
                             <li class="categeory">
                  <c:forEach items="${categoryList}" var="category" >
                 <%--  <a class="alink" id="mycategory" href="navproducts/${category.id}"> --%>
-                     <a class="alink" href=" <c:out value="${category.categoryName}" />">
-                     <c:out value="${category.categoryName}" />
+                     <a class="alink" href=" nav/<c:out value="${category.id}" />">
+                 	   <c:out value="${category.categoryName}" />
                      </a>
              <%-- <c:out value="${category.categoryName}" /> --%> 
                
@@ -121,12 +121,13 @@
 			<c:import url="/WEB-INF/views/catproducts.jsp"></c:import>
 		</c:when>
 	</c:choose>
-	<%-- 
+
 	<c:choose>
-		<c:when test="${CategoryPageClicked}">
-			<c:import url="/WEB-INF/views/CategoryPage.jsp"></c:import>
+		<c:when test="${UserClickedshowproduct}">
+			<c:import url="/WEB-INF/views/ShowProduct.jsp"></c:import>
 		</c:when>
 	</c:choose>
+		<%-- 
 	<c:choose>
 		<c:when test="${SupplierPageClicked}">
 			<c:import url="/WEB-INF/views/SupplierPage.jsp"></c:import>

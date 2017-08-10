@@ -26,8 +26,7 @@ th {
 <body>
 	<div style="width: 95%; margin: 0 auto;">
 
-		<div id="bookDialog" style="display: none;">
-	<%@ include file="CategoryPage.jsp"%>
+
 	
 	
 			</div>
@@ -48,18 +47,14 @@ th {
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${categoryList}" var="category" varStatus="loopCounter">
+				<c:forEach items="${productList1}" var="product" varStatus="loopCounter">
 					<tr>
 						<td><c:out value="${loopCounter.count}" /></td>
-						<td><c:out value="${category.id}" /></td>
-						<td><c:out value="${category.categoryName}" /></td>
-						<td><c:out value="${category.categoryDescription}" /></td>
+						<td><c:out value="${product.id}" /></td>
+						<td><c:out value="${product.name}" /></td>
+						<td><c:out value="${product.price}" /></td>
 						
-						<td><nobr>
-<button class="btn btn-primary"	onclick="editCategory(${category.id});"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</button>
-
-<a class="btn btn-primary" onclick="return confirm('Are you sure you want to delete this book?');" href="delete/${category.id}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
-								</a>
+						<td><nobr>								
 
 							</nobr></td>
 					</tr>
