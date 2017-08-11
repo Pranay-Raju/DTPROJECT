@@ -60,7 +60,7 @@ public class ProductController {
 		logger.info("Product Save Operation Started");
 	    MultipartFile productImage = product.getImage();
         String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        path = Paths.get(rootDirectory + "\\WEB-INF\\resources\\images\\"+product.getId()+".png");
+        path = Paths.get(rootDirectory + "\\WEB-INF\\resources\\images\\"+product.getId()+".jpg");
 
 
         if (productImage != null && !productImage.isEmpty()) {

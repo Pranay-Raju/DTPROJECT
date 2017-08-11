@@ -124,7 +124,7 @@
 
 	<c:choose>
 		<c:when test="${UserClickedshowproduct}">
-			<c:import url="/WEB-INF/views/ShowProduct.jsp"></c:import>
+			<c:import url="/WEB-INF/views/ListCategory.jsp"></c:import>
 		</c:when>
 	</c:choose>
 		<%-- 
@@ -168,4 +168,5 @@
 
 	  
 </body>
-</html>                                		
+</html>           
+<%-- <%@include file="ListCategory.jsp" %>       --%>               		
