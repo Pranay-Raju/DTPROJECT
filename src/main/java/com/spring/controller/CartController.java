@@ -4,10 +4,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.spring.dao.CartDAO;
 import com.spring.dao.ProductDAO;
 import com.spring.model.Cart;
@@ -26,10 +25,11 @@ public class CartController {
 	
 	
 	Cart cart;
+
 	
 	
     @RequestMapping(value="addToCart/{id}")
-    public String addProductToCart(@PathVariable("id") int id, HttpSession session)
+    public String addProductToCart(@PathVariable("id") int id, HttpSession session,Model model)
     {
     	int userId = (Integer) session.getAttribute("userid");
     	int q=1;
@@ -39,11 +39,10 @@ public class CartController {
 			Product p = productDAO.getProductById(id);
 			System.out.println(item);
 			item.setProductPrice(p.getPrice());
-			if(cart.getProductid()==id)
+			model.addAttribute("message", p.getName() +"is already exist");
 			item.setSubTotal(item.getProductPrice() + (q*p.getPrice()));
-			
 			cartDAO.saveProductToCart(item);
-			return "redirect:/view/";
+			return "WelcomePage";
 		} else {
 			Cart item = new Cart();
 			Product p = productDAO.getProductById(id);

@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 
@@ -586,8 +586,9 @@ First product box start here
 									<div class="col-md-12">
 									<%-- 	<button type="button" onclick="addCart(${product})";
 											class="btn btn-danger btn-cart">Add to Cart</button> --%>
+											<%--  <sec:authorize access="isAuthenticated()"> --%>
 										<a href="addToCart/${product.id}"  class="btn btn-danger btn-cart"><span>Add to cart</span></a>
-                            
+                            		<%-- </sec:authorize> --%>
 										<a href="javascript:void(0);" class="btn btn-info"><span>More
 												info</span></a>
 									</div>
