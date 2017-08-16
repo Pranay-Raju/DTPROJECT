@@ -45,12 +45,13 @@ public class HomeController {
 	
 
     @RequestMapping(value="/",  method=RequestMethod.GET)
-    public String homePage(HttpSession session)
+    public String homePage(HttpSession session,Model m)
     {
     	session.setAttribute("categoryList", categoryDAO.list());
     	session.setAttribute("ProductList",productDAO.list());
-    	/*session.setAttribute("ListProduct", productDAO.getProductByCategoryID(id));
-    	*/
+    	m.addAttribute("UserClickedshowproduct", "true");
+    	/*session.setAttribute("ListProduct", productDAO.getProductByCategoryID(id));*/
+    
     	
        return "WelcomePage";
     }
@@ -76,11 +77,12 @@ public class HomeController {
 	@RequestMapping(value = "/login_session_attributes")
 	public String login_session_attributes(HttpSession session,Model model) {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
+		
 		User user = userDAO.get(email);
 		session.setAttribute("userid", user.getId());
 		session.setAttribute("name", user.getEmail());
 		session.setAttribute("LoggedIn", "true");
-
+		System.out.println(session.getAttribute("userid"));
 		Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) SecurityContextHolder.getContext()
 		.getAuthentication().getAuthorities();
 		String role="ROLE_USER";
@@ -103,6 +105,7 @@ public class HomeController {
 			 return "/AdminPage";
 		     }
 	}
+		
 		return "/WelcomePage";
 	
 	}
@@ -152,10 +155,11 @@ public class HomeController {
 public String ShowProductByCategory(@PathVariable("id") int id,RedirectAttributes attributes,Model m) {
 	
 	logger.info("Listing the Product by Category ID:");
-    m.addAttribute("UserClickedshowproduct", "true");
-    m.addAttribute("ListProduct", productDAO.getProductByCategoryID(id));
+	
+  /*  m.addAttribute("ListProduct", productDAO.getProductByCategoryID(id));*/
+	attributes.addFlashAttribute("ListProduct", productDAO.getProductByCategoryID(id));
     logger.info("Listed the product by Category ID:"+id);
-	return "WelcomePage";
+    return "redirect:/";
 }
 
 }

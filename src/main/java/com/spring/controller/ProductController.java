@@ -53,30 +53,26 @@ public class ProductController {
 		return "AdminPage";
 		
 	}
-	
-	@RequestMapping(value="saveProduct",method=RequestMethod.POST)
-	public String insertProduct(@ModelAttribute("product") Product product)
-	{
-		logger.info("Product Save Operation Started");
-	    MultipartFile productImage = product.getImage();
-        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        path = Paths.get(rootDirectory + "\\WEB-INF\\resources\\images\\"+product.getId()+".jpg");
-
-
-        if (productImage != null && !productImage.isEmpty()) {
+	@RequestMapping(value="/saveProduct")
+	public String updateproduct(@ModelAttribute("product") Product product,HttpServletRequest request,Model m){
+		  productDAO.saveProduct(product);
+		MultipartFile file=product.getImage();
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+        path = Paths.get(rootDirectory + "\\resources\\images\\"+product.getId()+".jpg");
+        if (file != null && !file.isEmpty()) {
             try {
-            	productImage.transferTo(new File(path.toString()));
+            	logger.info("Product Image Save operation Start");
+            	file.transferTo(new File(path.toString()));
+            	logger.info("Product Image has been successfully");
             } catch (Exception e) {
                 e.printStackTrace();
+                System.out.println("Error");
                 throw new RuntimeException("item image saving failed.", e);
             }
         }
-
-		productDAO.saveProduct(product);
-		logger.info("Product Object has been added"+product.getId()+""+product.getImage());
-		
-		return "redirect:/product";
-	   }
+        return "redirect:/product";
+	}
+	
 	
 	@RequestMapping(value="editproduct/{id}",method=RequestMethod.GET)
 	public String editProduct(@PathVariable("id") int id,RedirectAttributes attributes)

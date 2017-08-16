@@ -12,6 +12,16 @@ public class Product {
 	private String name;
 	private String description;
 	private double price;
+	private int quantity ;
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+
+
 	private int instock;
 	
 	private int category_id;

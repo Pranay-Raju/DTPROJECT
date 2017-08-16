@@ -54,18 +54,18 @@
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Profile</a></li>
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Category<b class="caret"></b></a>
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" data-hover="dropdown" data-animations="fadeInDown fadeInRight fadeInUp fadeInLeft" >Category<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="categeory">
                  <c:forEach items="${categoryList}" var="category" >
-                <%--  <a class="alink" id="mycategory" href="navproducts/${category.id}"> --%>
+               
                      <a class="alink" href=" nav/<c:out value="${category.id}" />">
                  	   <c:out value="${category.categoryName}" />
                      </a>
-             <%-- <c:out value="${category.categoryName}" /> --%> 
+          
                
               
-              <%--    <a class="alink" href=" <c:out value="${category.categoryName}" />"></a>		 --%>	
+           	
 					</c:forEach></li>
                    		 </ul>
                      
