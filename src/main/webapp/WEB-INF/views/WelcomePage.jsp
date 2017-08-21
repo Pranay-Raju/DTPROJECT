@@ -109,6 +109,32 @@ ${message}<nav class="navbar navbar-inverse  navbar-fixed-top"  role="navigation
         </div>
    </nav>
     
+    <div class="container">
+		<c:forEach items="${HomeList}" var="product">
+		
+		<div class="col-md-4">
+		<!-- 
+			<div class="col-xs-3 w3-animate-zoom">
+		 -->		<div class="thumbnail">
+					<img class="img-responsive" style="padding-top: 5px" src="<c:url value="/resources/images/${product.id }.jpg" ></c:url>">
+				 <div class="caption">
+                  <h4 class="pull-right">${product.price}</h4>
+                  <h4><a href=  "#">${product.name}</a></h4>
+                  <p>${product.description}.</p>
+                								<form action="addToCart/${product.id}">
+										<input type="submit" value="Add to Cart" class="btn btn-primary" >
+
+									</form>
+						
+					</div>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
+    
+    
+    
+    
             <div class="modal-footer">
                 <div style="padding:10px"></div>
             </div>

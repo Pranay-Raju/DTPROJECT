@@ -48,6 +48,7 @@ public class HomeController {
     {
     	session.setAttribute("categoryList", categoryDAO.list());
     	session.setAttribute("ProductList",productDAO.list());
+    	session.setAttribute("HomeList", productDAO.homeList());
     	m.addAttribute("UserClickedshowproduct", "true");
     	/*session.setAttribute("ListProduct", productDAO.getProductByCategoryID(id));*/
     
