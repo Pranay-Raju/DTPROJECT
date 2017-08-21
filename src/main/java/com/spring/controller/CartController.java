@@ -24,7 +24,6 @@ public class CartController {
 	ProductDAO productDAO;
 	
 	
-	Cart cart;
 
 	
 	
@@ -35,13 +34,16 @@ public class CartController {
     	int q=1;
     	if (cartDAO.getitem(id, userId) != null) {
 			Cart item = cartDAO.getitem(id, userId);
+			
 			item.setProductQuantity(item.getProductQuantity() + q);
+			
 			Product p = productDAO.getProductById(id);
+			
 			System.out.println(item);
 			item.setProductPrice(p.getPrice());
-			model.addAttribute("message", p.getName() +"is already exist");
-			item.setSubTotal(item.getProductPrice() + (q*p.getPrice()));
+			item.setSubTotal(item.getProductQuantity() *p.getPrice());
 			cartDAO.saveProductToCart(item);
+			model.addAttribute("message", p.getName() +"is already exist");
 			return "WelcomePage";
 		} else {
 			Cart item = new Cart();
@@ -53,7 +55,7 @@ public class CartController {
 			item.setSubTotal(q * p.getPrice());
 			item.setProductPrice(p.getPrice());
 			cartDAO.saveProductToCart(item);
-			return "redirect:/view/";
+			return "WelcomePage";
 		}
     	
     }

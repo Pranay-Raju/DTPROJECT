@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.dao.CategoryDAO;
@@ -55,7 +54,7 @@ public class HomeController {
     	
        return "WelcomePage";
     }
-	
+	/*
     @RequestMapping("/login")
     public String login(@RequestParam(value="error",required=false) String error,
     		@RequestParam(value="logout",required=false) String logout,
@@ -69,7 +68,7 @@ public class HomeController {
     	
     }
     
-    
+    */
     
     
     
@@ -149,7 +148,7 @@ public class HomeController {
 	
 	
 	
-	
+
 	
 @RequestMapping(value ="nav/{id}" )
 public String ShowProductByCategory(@PathVariable("id") int id,RedirectAttributes attributes,Model m) {

@@ -19,6 +19,11 @@ public class UserDAOImpl implements UserDAO {
 	private SessionFactory sessionFactory;
 
 	
+	public UserDAOImpl(SessionFactory sessionFactory) {
+		
+		this.sessionFactory = sessionFactory;
+	}
+
 	@Transactional
 	public boolean saveOrUpdate(User user) {
 		

@@ -7,6 +7,8 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,12 +18,26 @@ import com.spring.model.Product;
 @Repository
 public class ProductDAOImpl implements ProductDAO {
 
+	
+	Logger log=LoggerFactory.getLogger(ProductDAOImpl.class);
+	
+	
+	
 	@Autowired
 	SessionFactory sessionFactory;
 
+	public ProductDAOImpl(SessionFactory sessionFactory) {
+		
+		this.sessionFactory = sessionFactory;
+	}
+
 	@Transactional
 	public boolean saveProduct(Product product) {
+		
+		log.info("Persisting Product object started.........", product.getName());
 		sessionFactory.getCurrentSession().saveOrUpdate(product);
+		log.info("Product has been saved successfully....", product.getName());
+		
 		return true;
 	}
 

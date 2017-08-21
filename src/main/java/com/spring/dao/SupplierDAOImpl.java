@@ -20,6 +20,12 @@ public class SupplierDAOImpl implements SupplierDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	public SupplierDAOImpl(SessionFactory sessionFactory) {
+		
+		this.sessionFactory = sessionFactory;
+	}
+
+
 	@Transactional
 	public boolean saveSupplier(Supplier supplier) {
 		sessionFactory.getCurrentSession().saveOrUpdate(supplier);

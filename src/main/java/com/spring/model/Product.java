@@ -2,7 +2,10 @@ package com.spring.model;
 
 import javax.persistence.*;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile; 
+
+@Component
 @Entity
 public class Product {
 	
@@ -13,14 +16,6 @@ public class Product {
 	private String description;
 	private double price;
 	private int quantity ;
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-
 
 	private int instock;
 	
@@ -30,6 +25,18 @@ public class Product {
 	
 	@Transient
 	MultipartFile image;
+	
+
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "category_id", updatable = false, insertable = false, nullable = false)
+	private Category category;
+	 
+	 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "supplier_id", nullable = false, updatable = false, insertable = false)
+	private Supplier supplier;
+	
 	
 	public MultipartFile getImage() {
 		return image;
@@ -49,19 +56,7 @@ public class Product {
 	public void setSupplier_id(int supplier_id) {
 		this.supplier_id = supplier_id;
 	}
-
-	
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "category_id", updatable = false, insertable = false, nullable = false)
-	private Category category;
-	 
-	 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "supplier_id", nullable = false, updatable = false, insertable = false)
-	private Supplier supplier;
-	
-	 
+ 
 	public Supplier getSupplier() {
 		return supplier;
 	}
@@ -105,4 +100,10 @@ public class Product {
 		this.instock = instock;
 	}
 
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 }

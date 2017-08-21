@@ -10,9 +10,23 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Example of Bootstrap 3 Dropdowns within a Navbar</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+<link href="resources/lib/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/lib/bootstrap-3.3.6/css/bootstrap.css" rel="stylesheet" />
+
+<!-- scripts -->
+<script src="resources/lib/jquery/jquery-1.10.2.js"></script>
+<script src="resources/lib/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+
+
+
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+ -->
 <style type="text/css">
 	.bs-example{
     	margin: 20px;
@@ -20,92 +34,96 @@
 </style>
 </head>
 <body>
-${message}
-<div class="bs-example">
-    <nav id="myNavbar" class="navbar navbar-inverse" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="container">
+${message}<nav class="navbar navbar-inverse  navbar-fixed-top"  role="navigation" >
+                               
+                 <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Brand</a>
+             
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Profile</a></li>
+                    <li class="active"><a   href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+                    <li><a href="aboutus.html">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a></li>
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Messages <b class="caret"></b></a>
+                        <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
+                      <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Menu <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="">Inbox</a></li>
-                            <li><a href="#">Drafts</a></li>
-                            <li><a href="#">Sent Items</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Trash</a></li>
+                            <li><a href="contactus.html#">Main Courses</a></li>
+                            <li><a href="contactus.html#">Bootstrap</a></li>
+                            <li><a href="contactus.html#">Asp</a></li>
+                            <li><a href="contactus.html#">SQl</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">PHP</li>
+                            <li><a href="contactus.html#">MySQl</a></li>
+                           
                         </ul>
                     </li>
-                </ul>
-                
-                <ul class="nav navbar-nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Profile</a></li>
+                    <li><a href="#"><span class="fa fa-envelope-o"></span> Contact</a></li>
+                    
+                    
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" data-hover="dropdown" data-animations="fadeInDown fadeInRight fadeInUp fadeInLeft" >Category<b class="caret"></b></a>
+                        <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
+                      <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Category <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li class="categeory">
-                 <c:forEach items="${categoryList}" var="category" >
+                           <c:forEach items="${categoryList}" var="category" >
                
+               <li>
                      <a class="alink" href=" nav/<c:out value="${category.id}" />">
                  	   <c:out value="${category.categoryName}" />
                      </a>
           
-               
+               </li>
               
-           	
-					</c:forEach></li>
-                   		 </ul>
-                     
-                  </li>
-                  
-              </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Sign <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        
-                        <sec:authorize access="!isAuthenticated()">
-                            <li><a href="login">Login Page</a></li>
-                            <li><a href="register">Registration Page</a></li>
-                            </sec:authorize>
-                            <sec:authorize access="isAuthenticated()">
-                              <li> <a href="<c:url value="j_spring_security_logout" />">Logout</a></li>
-                              </sec:authorize>
-                            <li><a href="#">Product action</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Settings</a></li>
+           	</c:forEach></ul>
+           	</li>
                         </ul>
-                    </li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
+              
+                    
+                    
+                    
+                    
+               <ul class="nav navbar-nav navbar-right">
+              <%--    <sec:authorize access="isAuthenticated()"> --%>
+              						<%-- <li><a style="color: white" href="${pageContext.request.contextPath}/Home">Hello <b><sec:authentication
+										property="principal.username" /></b></a></li> --%>
+						<li><a href="${pageContext.request.contextPath}/perform_logout"><span
+								class="glyphicon glyphicon-log-out"></span></a></li>
+			<%-- 		</sec:authorize> --%>	
+							<%-- <sec:authorize access="!isAuthenticated()"> --%>
+						<li><a href="#log" data-toggle="modal" data-target="#login">
+							<span class="glyphicon glyphicon-log-in"></span></a></li>
+						<li><a href="#reg" data-toggle="modal" data-target="#registration"> 
+							<span class="glyphicon glyphicon-user"></span></a></li>
+					<%-- </sec:authorize> --%>
+</ul>
+                                              
+       
+            </div>
         </div>
-    </nav>
-</div>
+   </nav>
+    
+            <div class="modal-footer">
+                <div style="padding:10px"></div>
+            </div>
 
-<%-- <c:if test="${LoginPageClicked}">
+<%-- 
+ <c:if test="${LoginPageClicked}">
 		<jsp:include page="LoginPage.jsp"></jsp:include>
 	</c:if>
- --%>
+ 
 <c:choose>
 		<c:when test="${LoginPageClicked}">
 			<c:import url="/WEB-INF/views/LoginPage.jsp"></c:import>
 		</c:when>
 	</c:choose>
-
+ --%>
 
 <c:choose>
 		<c:when test="${IfRegisterClicked}">
@@ -135,39 +153,19 @@ ${message}
 		</c:when>
 	</c:choose> --%>
 	
-
-		<c:choose>
-			<c:when test="${!Administrator}">
-				<c:if test="${!empty productList}">
-					<div id="myproduct">
-						<!-- <ul> -->
-						<div class="row" id="myproduct"
-							style="padding-top: 20px; padding-botton: 20px; padding-left: 20px; padding-bottom: 20px;">
-							<!-- <h3 style="margin-left: 15px">Latest Products</h3> -->
-							<c:forEach items="${ProductList}" var="product">
-								<div class="col-xs-2 w3-animate-zoom">
-									<div class="img" style="margin: 5px">
-										<a href="ShowProduct/${product.id}"> <img height="192px"
-							                                width="192px" alt="${product.id }"
-							src="<c:url value="/resources/images/${product.id }.jpg"></c:url>"></a>
-										<div class="desc w3-black" style="opacity: 0.9">
-											<p>
-												${product.name}<br> <i class="fa fa-inr" aria-hidden="true"></i> ${product.price}
-												
-											</p>
-
-										</div>
-									</div>
-								</div>
-							</c:forEach>
-						</div>
-						<!-- </ul> -->
-					</div>
-				</c:if>
-			</c:when>
-		</c:choose>
-
 	  
 </body>
+
+
+
+
+<script type="text/javascript">
+		$(document).ready(function() {
+			if (window.location.href.indexOf('#login') != -1) {
+				$('#login').modal('show');
+			}
+		});
+	</script>
+	
+<div><%@include file="/WEB-INF/views/LoginPage.jsp"%></div>
 </html>           
-<%-- <%@include file="ListCategory.jsp" %>       --%>               		

@@ -1,9 +1,15 @@
 package com.spring.model;
 
 import java.util.HashSet;
+
+
 import java.util.Set;
 
 import javax.persistence.*;
+
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 public class Supplier {
 	

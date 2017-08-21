@@ -19,6 +19,12 @@ public class CartDAOImpl implements CartDAO {
 	@Autowired
 	SessionFactory sessionFactory;
 
+	public CartDAOImpl(SessionFactory sessionFactory) {
+	
+		this.sessionFactory = sessionFactory;
+	}
+
+
 	@Transactional
 	public boolean saveProductToCart(Cart cart) {
 		sessionFactory.getCurrentSession().saveOrUpdate(cart);

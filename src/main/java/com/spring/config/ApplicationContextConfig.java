@@ -1,35 +1,20 @@
 package com.spring.config;
 
 import java.util.Properties;
-
 import javax.sql.DataSource;
-
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
+import org.springframework.orm.hibernate5.*;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import com.spring.dao.*;
 
-import com.spring.dao.CartDAO;
-import com.spring.dao.CartDAOImpl;
-import com.spring.dao.CategoryDAO;
-import com.spring.dao.CategoryDAOImpl;
-import com.spring.dao.ProductDAO;
-import com.spring.dao.ProductDAOImpl;
-import com.spring.dao.SupplierDAO;
-import com.spring.dao.SupplierDAOImpl;
-import com.spring.dao.UserDAO;
-import com.spring.dao.UserDAOImpl;
 
 @Configuration
-@ComponentScan("com.spring")
+@ComponentScan("com.spring.model")
 @EnableTransactionManagement
-@EnableWebMvc
+//@EnableWebMvc
 public class ApplicationContextConfig  {
 	
 	
@@ -79,13 +64,13 @@ public class ApplicationContextConfig  {
 	@Autowired
 	@Bean(name = "userDAO")
 	public UserDAO getUserDAO(SessionFactory sessionFactory) {
-	    return new UserDAOImpl();
+	    return new UserDAOImpl(sessionFactory);
 	}
 	
 	@Autowired
 	@Bean(name = "productDAO")
 	public ProductDAO getProductDao(SessionFactory sessionFactory) {
-	    return new ProductDAOImpl();
+	    return new ProductDAOImpl(sessionFactory);
 	}
 	
 	
@@ -93,7 +78,7 @@ public class ApplicationContextConfig  {
 	@Bean(name="categoryDAO")
 	public CategoryDAO getCategory(SessionFactory sessionFactory)
 	{
-		return new CategoryDAOImpl();
+		return new CategoryDAOImpl(sessionFactory);
 		
 	}
 	
@@ -101,7 +86,7 @@ public class ApplicationContextConfig  {
 	@Bean(name="supplierDAO")
 	public SupplierDAO getSupplier(SessionFactory sessionFactory)
 	{
-		return new SupplierDAOImpl();
+		return new SupplierDAOImpl(sessionFactory);
 		
 	}
 	
@@ -109,7 +94,7 @@ public class ApplicationContextConfig  {
 	@Bean(name="cartDAO")
 	public CartDAO getCart(SessionFactory sessionFactory)
 	{
-		return new CartDAOImpl();
+		return new CartDAOImpl(sessionFactory);
 		
 	}
 

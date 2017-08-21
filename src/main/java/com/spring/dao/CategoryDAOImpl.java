@@ -15,10 +15,18 @@ import com.spring.model.Category;
 @SuppressWarnings("deprecation")
 @Repository
 public class CategoryDAOImpl implements CategoryDAO {
-
 	
 	@Autowired
 	SessionFactory sessionFactory;
+	
+	public CategoryDAOImpl(SessionFactory sessionFactory) {
+		
+		this.sessionFactory = sessionFactory;
+	}
+
+
+
+
 	
 	@Transactional
 	public boolean saveCategory(Category category) {

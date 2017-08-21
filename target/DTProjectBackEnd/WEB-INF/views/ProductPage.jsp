@@ -52,6 +52,14 @@
 			<form:input name="id" path="price" placeholder="Product Price" class="form-control" />
 		</div>
 	</div>
+	
+	<div class="form-group">
+		<label for="Product Quantity" class="col-xs-4 control-label">Product Quantity</label>
+		<div class="col-xs-4">
+			<form:input name="id" path="quantity" placeholder="Product Quantity" class="form-control" />
+		</div>
+	</div>
+	
 
 
 
@@ -94,7 +102,7 @@
 	<div class="form-group">
 		<label for="Product Image" class="col-xs-4 control-label">Product Image</label>
 		<div class="col-xs-4">
-		<input type="file" name="file" class="form-control" />
+		<form:input type="file" path="image" class="form-control" />
 		</div>
 	</div>
 	
@@ -106,12 +114,12 @@
 		<div class="col-xs-4">
 		
 			
-		<c:if test="${category.id==0}">
-		<input type="submit" value="Add Category" id="btn-add" class="btn btn-primary" >
+		<c:if test="${product.id==0}">
+		<input type="submit" value="Add Product" id="btn-add" class="btn btn-primary" >
 		
-		</c:if> <c:if test="${category.id!=0}">
+		</c:if> <c:if test="${product.id!=0}">
 		
-	   <input type="submit" value="Update Category" id="btn-update" class="btn btn-primary" >
+	   <input type="submit" value="Update Product" id="btn-update" class="btn btn-primary" >
 	  </c:if>
 		
 		

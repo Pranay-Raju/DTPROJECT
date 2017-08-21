@@ -38,8 +38,6 @@ public class ProductController {
 	SupplierDAO supplierDAO;
 	
 	
-	@Autowired
-	HttpServletRequest request;
 	private Path path;
 
 	@RequestMapping(value="/product",method=RequestMethod.GET)
