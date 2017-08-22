@@ -5,7 +5,10 @@ import java.util.Set;
 
 import javax.persistence.*;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.stereotype.Component;
 
+
+@Component
 @Entity
 public class Category {
 	
