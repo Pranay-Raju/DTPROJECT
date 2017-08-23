@@ -34,11 +34,12 @@
 </style>
 </head>
 <body>
-${message}<nav class="navbar navbar-inverse  navbar-fixed-top"  role="navigation" >
+${error}
+<nav class="navbar navbar-inverse  navbar-fixed-top"  role="navigation" >
                                
                  <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"   data-hover="dropdown">>
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -86,24 +87,36 @@ ${message}<nav class="navbar navbar-inverse  navbar-fixed-top"  role="navigation
                         </ul>
               
                     
-                    
-                    
+                   			<li style="float: right">
+                   			<a href="viewcart"	class="w3-hover-none w3-text-sand w3-hover-text-white">
+                   			<i	class="fa fa-shopping-cart"></i> <span
+										class="w3-badge w3-white">${cartsize}</span></a></li>
+						
                     
                <ul class="nav navbar-nav navbar-right">
-              <%--    <sec:authorize access="isAuthenticated()"> --%>
-              						<%-- <li><a style="color: white" href="${pageContext.request.contextPath}/Home">Hello <b><sec:authentication
-										property="principal.username" /></b></a></li> --%>
-						<li><a href="${pageContext.request.contextPath}/perform_logout"><span
-								class="glyphicon glyphicon-log-out"></span></a></li>
-			<%-- 		</sec:authorize> --%>	
-							<%-- <sec:authorize access="!isAuthenticated()"> --%>
-						<li><a href="#log" data-toggle="modal" data-target="#login">
+               
+               		<sec:authorize access="!isAuthenticated()"> 
+						<li><a href="login">
 							<span class="glyphicon glyphicon-log-in"></span></a></li>
-						<li><a href="#reg" data-toggle="modal" data-target="#registration"> 
+						<li><a href="register"> 
 							<span class="glyphicon glyphicon-user"></span></a></li>
-					<%-- </sec:authorize> --%>
-</ul>
-                                              
+				</sec:authorize>
+          <sec:authorize access="isAuthenticated()"> 
+ <li><a style="color: white" href="${pageContext.request.contextPath}/Home">Hello <b><sec:authentication property="principal.username" /></b></a></li> 
+ 
+						<li><c:url value="/j_spring_security_logout" var="logoutUrl" />
+<a href="${logoutUrl}">Log Out</a><span class="glyphicon glyphicon-log-out"></span></li>
+			</sec:authorize> 
+			
+			
+			
+                   			<li style="float: right">
+                   			<a href="viewcart"	class="w3-hover-none w3-text-sand w3-hover-text-white">
+                   			<i	class="fa fa-shopping-cart"></i> <span
+										class="w3-badge w3-white">${cartsize}</span></a></li>
+					
+				
+                             </ul>                 
        
             </div>
         </div>
@@ -116,7 +129,7 @@ ${message}<nav class="navbar navbar-inverse  navbar-fixed-top"  role="navigation
 		<!-- 
 			<div class="col-xs-3 w3-animate-zoom">
 		 -->		<div class="thumbnail">
-					<img class="img-responsive" style="padding-top: 5px" src="<c:url value="/resources/images/${product.id }.jpg" ></c:url>">
+					<img class="img-thumbnail" style="padding-top: 12px" src="/DTProjectBackEnd/imageDisplay?id=${product.id}" >
 				 <div class="caption">
                   <h4 class="pull-right">${product.price}</h4>
                   <h4><a href=  "#">${product.name}</a></h4>
@@ -139,18 +152,18 @@ ${message}<nav class="navbar navbar-inverse  navbar-fixed-top"  role="navigation
                 <div style="padding:10px"></div>
             </div>
 
-<%-- 
+
  <c:if test="${LoginPageClicked}">
 		<jsp:include page="LoginPage.jsp"></jsp:include>
 	</c:if>
- 
+ <%-- 
 <c:choose>
 		<c:when test="${LoginPageClicked}">
 			<c:import url="/WEB-INF/views/LoginPage.jsp"></c:import>
 		</c:when>
 	</c:choose>
- --%>
 
+ --%>
 <c:choose>
 		<c:when test="${IfRegisterClicked}">
 			<c:import url="/WEB-INF/views/RegistrationPage.jsp"></c:import>
@@ -183,15 +196,6 @@ ${message}<nav class="navbar navbar-inverse  navbar-fixed-top"  role="navigation
 </body>
 
 
-
-
-<script type="text/javascript">
-		$(document).ready(function() {
-			if (window.location.href.indexOf('#login') != -1) {
-				$('#login').modal('show');
-			}
-		});
-	</script>
 	
-<div><%@include file="/WEB-INF/views/LoginPage.jsp"%></div>
+<%-- <div><%@include file="/WEB-INF/views/LoginPage.jsp"%></div> --%>
 </html>           

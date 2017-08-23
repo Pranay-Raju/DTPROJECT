@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.spring.testcase.SupplierDAOTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 1, Errors: 2, Skipped: 0, Time elapsed: 0.875 sec <<< FAILURE!
-updateProductTestCase(com.spring.testcase.SupplierDAOTest)  Time elapsed: 0.016 sec  <<< ERROR!
+Tests run: 4, Failures: 1, Errors: 2, Skipped: 0, Time elapsed: 0.844 sec <<< FAILURE!
+updateProductTestCase(com.spring.testcase.SupplierDAOTest)  Time elapsed: 0.032 sec  <<< ERROR!
 org.springframework.orm.hibernate5.HibernateOptimisticLockingFailureException: Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1; nested exception is org.hibernate.StaleStateException: Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1
 	at org.springframework.orm.hibernate5.SessionFactoryUtils.convertHibernateAccessException(SessionFactoryUtils.java:283)
 	at org.springframework.orm.hibernate5.HibernateTransactionManager.convertHibernateAccessException(HibernateTransactionManager.java:755)
@@ -70,8 +70,8 @@ Caused by: org.hibernate.StaleStateException: Batch update returned unexpected r
 	at org.springframework.orm.hibernate5.HibernateTransactionManager.doCommit(HibernateTransactionManager.java:582)
 	... 39 more
 
-getAllSupplierTestCase(com.spring.testcase.SupplierDAOTest)  Time elapsed: 0.078 sec  <<< FAILURE!
-java.lang.AssertionError: expected:<getAllSupplierTestCase> but was:<10>
+getAllSupplierTestCase(com.spring.testcase.SupplierDAOTest)  Time elapsed: 0.203 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<getAllSupplierTestCase> but was:<12>
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.failNotEquals(Assert.java:834)
 	at org.junit.Assert.assertEquals(Assert.java:118)
@@ -108,7 +108,7 @@ java.lang.AssertionError: expected:<getAllSupplierTestCase> but was:<10>
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-deleteSupplierTestCase(com.spring.testcase.SupplierDAOTest)  Time elapsed: 0 sec  <<< ERROR!
+deleteSupplierTestCase(com.spring.testcase.SupplierDAOTest)  Time elapsed: 0.032 sec  <<< ERROR!
 org.springframework.orm.hibernate5.HibernateOptimisticLockingFailureException: Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1; nested exception is org.hibernate.StaleStateException: Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1
 	at org.springframework.orm.hibernate5.SessionFactoryUtils.convertHibernateAccessException(SessionFactoryUtils.java:283)
 	at org.springframework.orm.hibernate5.HibernateTransactionManager.convertHibernateAccessException(HibernateTransactionManager.java:755)

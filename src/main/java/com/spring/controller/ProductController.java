@@ -1,8 +1,7 @@
 package com.spring.controller;
 
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
+import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -38,7 +38,7 @@ public class ProductController {
 	SupplierDAO supplierDAO;
 	
 	
-	private Path path;
+	
 
 	@RequestMapping(value="/product",method=RequestMethod.GET)
 	public String getProductPage(@ModelAttribute("product") Product product,Model model)
@@ -52,22 +52,19 @@ public class ProductController {
 		
 	}
 	@RequestMapping(value="/saveProduct")
-	public String updateproduct(@ModelAttribute("product") Product product,HttpServletRequest request,Model m){
-		  productDAO.saveProduct(product);
-		MultipartFile file=product.getImage();
-		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        path = Paths.get(rootDirectory + "\\resources\\images\\"+product.getId()+".jpg");
-        if (file != null && !file.isEmpty()) {
-            try {
-            	logger.info("Product Image Save operation Start");
-            	file.transferTo(new File(path.toString()));
-            	logger.info("Product Image has been successfully");
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("Error");
-                throw new RuntimeException("item image saving failed.", e);
-            }
-        }
+	public String updateproduct(@ModelAttribute("product") Product product,HttpServletRequest request,Model m,
+			@RequestParam("file") MultipartFile file){
+		
+		try {
+			product.setImage(file.getBytes());
+			product.setInstock(true);
+			  productDAO.saveProduct(product);
+		} catch (IOException e) {
+		
+			e.printStackTrace();
+		}
+		
+		
         return "redirect:/product";
 	}
 	

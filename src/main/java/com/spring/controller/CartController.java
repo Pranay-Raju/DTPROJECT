@@ -44,7 +44,7 @@ public class CartController {
 			item.setSubTotal(item.getProductQuantity() *p.getPrice());
 			cartDAO.saveProductToCart(item);
 			model.addAttribute("message", p.getName() +"is already exist");
-			return "WelcomePage";
+			return "redirect:/";
 		} else {
 			Cart item = new Cart();
 			Product p = productDAO.getProductById(id);
@@ -55,7 +55,7 @@ public class CartController {
 			item.setSubTotal(q * p.getPrice());
 			item.setProductPrice(p.getPrice());
 			cartDAO.saveProductToCart(item);
-			return "WelcomePage";
+			return "redirect:/";
 		}
     	
     }

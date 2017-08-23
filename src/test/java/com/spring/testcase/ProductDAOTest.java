@@ -22,6 +22,7 @@ public class ProductDAOTest {
 	@Autowired
 	private static ProductDAO productDAO;
 	
+	@SuppressWarnings("resource")
 	@BeforeClass
 	public static void initialize()
 	{

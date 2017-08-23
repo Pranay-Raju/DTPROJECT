@@ -2,8 +2,7 @@ package com.spring.model;
 
 import javax.persistence.*;
 
-import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile; 
+import org.springframework.stereotype.Component; 
 
 @Component
 @Entity
@@ -16,18 +15,21 @@ public class Product {
 	private String description;
 	private double price;
 	private int quantity ;
-
-	private int instock;
-	
+	private boolean instock;
 	private int category_id;
 	
 	private int supplier_id;
-	
-	@Transient
-	MultipartFile image;
+	@Lob
+	byte[]image;
 	
 
 
+	public byte[] getImage() {
+		return image;
+	}
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "category_id", updatable = false, insertable = false, nullable = false)
 	private Category category;
@@ -37,13 +39,6 @@ public class Product {
 	@JoinColumn(name = "supplier_id", nullable = false, updatable = false, insertable = false)
 	private Supplier supplier;
 	
-	
-	public MultipartFile getImage() {
-		return image;
-	}
-	public void setImage(MultipartFile image) {
-		this.image = image;
-	}
 	public int getCategory_id() {
 		return category_id;
 	}
@@ -93,10 +88,10 @@ public class Product {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public int getInstock() {
+	public boolean getInstock() {
 		return instock;
 	}
-	public void setInstock(int instock) {
+	public void setInstock(boolean instock) {
 		this.instock = instock;
 	}
 

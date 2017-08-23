@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="1" name="com.spring.testcase.SupplierDAOTest" time="0.328" errors="2" skipped="0">
+<testsuite tests="4" failures="1" name="com.spring.testcase.SupplierDAOTest" time="0.282" errors="2" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\bin"/>
@@ -27,7 +27,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="E:\DT\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf5110287291824888075.tmp"/>
+    <property name="classworlds.conf" value="E:\DT\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf5506520190863796741.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_121\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_121/bin/server;C:/Program Files/Java/jre1.8.0_121/bin;C:/Program Files/Java/jre1.8.0_121/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Broadcom\Broadcom 802.11 Network Adapter;;C:\oraclexe\app\oracle\product\11.2.0\server\bin;;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\Java\jdk1.8.0_121\bin;F:\DevOps\maven\bin;E:\spring-tool-suite-3.8.4.RELEASE-e4.6.3-win32-x86_64\sts-bundle\sts-3.8.4.RELEASE;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -61,8 +61,8 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.spring.testcase.SupplierDAOTest" name="createSupplierTestCase" time="0.234"/>
-  <testcase classname="com.spring.testcase.SupplierDAOTest" name="updateProductTestCase" time="0.016">
+  <testcase classname="com.spring.testcase.SupplierDAOTest" name="createSupplierTestCase" time="0.015"/>
+  <testcase classname="com.spring.testcase.SupplierDAOTest" name="updateProductTestCase" time="0.032">
     <error message="Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1; nested exception is org.hibernate.StaleStateException: Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1" type="org.springframework.orm.hibernate5.HibernateOptimisticLockingFailureException">org.springframework.orm.hibernate5.HibernateOptimisticLockingFailureException: Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1; nested exception is org.hibernate.StaleStateException: Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1
 	at org.springframework.orm.hibernate5.SessionFactoryUtils.convertHibernateAccessException(SessionFactoryUtils.java:283)
 	at org.springframework.orm.hibernate5.HibernateTransactionManager.convertHibernateAccessException(HibernateTransactionManager.java:755)
@@ -134,8 +134,8 @@ Caused by: org.hibernate.StaleStateException: Batch update returned unexpected r
 ERROR: org.hibernate.internal.ExceptionMapperStandardImpl - HHH000346: Error during managed flush [Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1]
 </system-out>
   </testcase>
-  <testcase classname="com.spring.testcase.SupplierDAOTest" name="getAllSupplierTestCase" time="0.078">
-    <failure message="expected:&lt;getAllSupplierTestCase&gt; but was:&lt;10&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;getAllSupplierTestCase&gt; but was:&lt;10&gt;
+  <testcase classname="com.spring.testcase.SupplierDAOTest" name="getAllSupplierTestCase" time="0.203">
+    <failure message="expected:&lt;getAllSupplierTestCase&gt; but was:&lt;12&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;getAllSupplierTestCase&gt; but was:&lt;12&gt;
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.failNotEquals(Assert.java:834)
 	at org.junit.Assert.assertEquals(Assert.java:118)
@@ -173,14 +173,10 @@ ERROR: org.hibernate.internal.ExceptionMapperStandardImpl - HHH000346: Error dur
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </failure>
     <system-out>WARN : org.hibernate.orm.deprecation - HHH90000022: Hibernate&apos;s legacy org.hibernate.Criteria API is deprecated; use the JPA javax.persistence.criteria.CriteriaQuery instead
-Hibernate: select this_.supplier_id as supplier1_3_2_, this_.supplierAddress as supplier2_3_2_, this_.supplierName as supplier3_3_2_, products2_.supplier_id as supplier8_2_4_, products2_.id as id1_2_4_, products2_.id as id1_2_0_, products2_.category_id as category2_2_0_, products2_.description as descript3_2_0_, products2_.instock as instock4_2_0_, products2_.name as name5_2_0_, products2_.price as price6_2_0_, products2_.quantity as quantity7_2_0_, products2_.supplier_id as supplier8_2_0_, category3_.category_id as category1_1_1_, category3_.categoryDescription as category2_1_1_, category3_.categoryName as category3_1_1_ from Supplier this_ left outer join Product products2_ on this_.supplier_id=products2_.supplier_id left outer join Category category3_ on products2_.category_id=category3_.category_id
-Hibernate: select products0_.category_id as category2_2_0_, products0_.id as id1_2_0_, products0_.id as id1_2_1_, products0_.category_id as category2_2_1_, products0_.description as descript3_2_1_, products0_.instock as instock4_2_1_, products0_.name as name5_2_1_, products0_.price as price6_2_1_, products0_.quantity as quantity7_2_1_, products0_.supplier_id as supplier8_2_1_, supplier1_.supplier_id as supplier1_3_2_, supplier1_.supplierAddress as supplier2_3_2_, supplier1_.supplierName as supplier3_3_2_ from Product products0_ inner join Supplier supplier1_ on products0_.supplier_id=supplier1_.supplier_id where products0_.category_id=?
-Hibernate: select products0_.category_id as category2_2_0_, products0_.id as id1_2_0_, products0_.id as id1_2_1_, products0_.category_id as category2_2_1_, products0_.description as descript3_2_1_, products0_.instock as instock4_2_1_, products0_.name as name5_2_1_, products0_.price as price6_2_1_, products0_.quantity as quantity7_2_1_, products0_.supplier_id as supplier8_2_1_, supplier1_.supplier_id as supplier1_3_2_, supplier1_.supplierAddress as supplier2_3_2_, supplier1_.supplierName as supplier3_3_2_ from Product products0_ inner join Supplier supplier1_ on products0_.supplier_id=supplier1_.supplier_id where products0_.category_id=?
-Hibernate: select products0_.category_id as category2_2_0_, products0_.id as id1_2_0_, products0_.id as id1_2_1_, products0_.category_id as category2_2_1_, products0_.description as descript3_2_1_, products0_.instock as instock4_2_1_, products0_.name as name5_2_1_, products0_.price as price6_2_1_, products0_.quantity as quantity7_2_1_, products0_.supplier_id as supplier8_2_1_, supplier1_.supplier_id as supplier1_3_2_, supplier1_.supplierAddress as supplier2_3_2_, supplier1_.supplierName as supplier3_3_2_ from Product products0_ inner join Supplier supplier1_ on products0_.supplier_id=supplier1_.supplier_id where products0_.category_id=?
-Hibernate: select products0_.category_id as category2_2_0_, products0_.id as id1_2_0_, products0_.id as id1_2_1_, products0_.category_id as category2_2_1_, products0_.description as descript3_2_1_, products0_.instock as instock4_2_1_, products0_.name as name5_2_1_, products0_.price as price6_2_1_, products0_.quantity as quantity7_2_1_, products0_.supplier_id as supplier8_2_1_, supplier1_.supplier_id as supplier1_3_2_, supplier1_.supplierAddress as supplier2_3_2_, supplier1_.supplierName as supplier3_3_2_ from Product products0_ inner join Supplier supplier1_ on products0_.supplier_id=supplier1_.supplier_id where products0_.category_id=?
+Hibernate: select this_.supplier_id as supplier1_3_2_, this_.supplierAddress as supplier2_3_2_, this_.supplierName as supplier3_3_2_, products2_.supplier_id as supplier9_2_4_, products2_.id as id1_2_4_, products2_.id as id1_2_0_, products2_.category_id as category2_2_0_, products2_.description as descript3_2_0_, products2_.image as image4_2_0_, products2_.instock as instock5_2_0_, products2_.name as name6_2_0_, products2_.price as price7_2_0_, products2_.quantity as quantity8_2_0_, products2_.supplier_id as supplier9_2_0_, category3_.category_id as category1_1_1_, category3_.categoryDescription as category2_1_1_, category3_.categoryName as category3_1_1_ from Supplier this_ left outer join Product products2_ on this_.supplier_id=products2_.supplier_id left outer join Category category3_ on products2_.category_id=category3_.category_id
 </system-out>
   </testcase>
-  <testcase classname="com.spring.testcase.SupplierDAOTest" name="deleteSupplierTestCase" time="0">
+  <testcase classname="com.spring.testcase.SupplierDAOTest" name="deleteSupplierTestCase" time="0.032">
     <error message="Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1; nested exception is org.hibernate.StaleStateException: Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1" type="org.springframework.orm.hibernate5.HibernateOptimisticLockingFailureException">org.springframework.orm.hibernate5.HibernateOptimisticLockingFailureException: Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1; nested exception is org.hibernate.StaleStateException: Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1
 	at org.springframework.orm.hibernate5.SessionFactoryUtils.convertHibernateAccessException(SessionFactoryUtils.java:283)
 	at org.springframework.orm.hibernate5.HibernateTransactionManager.convertHibernateAccessException(HibernateTransactionManager.java:755)
