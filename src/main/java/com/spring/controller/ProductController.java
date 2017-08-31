@@ -55,14 +55,17 @@ public class ProductController {
 	public String updateproduct(@ModelAttribute("product") Product product,HttpServletRequest request,Model m,
 			@RequestParam("file") MultipartFile file){
 		
-		try {
-			product.setImage(file.getBytes());
+		String image=ImageController.uploadImage(file);
+		if(!image.isEmpty())
+		{
+			product.setImage(image);
+			
+		}
+			
+			
+			
 			product.setInstock(true);
 			  productDAO.saveProduct(product);
-		} catch (IOException e) {
-		
-			e.printStackTrace();
-		}
 		
 		
         return "redirect:/product";

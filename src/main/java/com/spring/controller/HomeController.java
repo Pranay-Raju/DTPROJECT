@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.dao.CartDAO;
 import com.spring.dao.CategoryDAO;
 import com.spring.dao.ProductDAO;
 import com.spring.dao.SupplierDAO;
@@ -42,6 +43,9 @@ public class HomeController {
 	@Autowired
 	UserDAO userDAO;
 	
+	@Autowired
+	CartDAO cartDAO;
+	
 	
 
     @RequestMapping(value="/",  method=RequestMethod.GET)
@@ -50,6 +54,7 @@ public class HomeController {
     	session.setAttribute("categoryList", categoryDAO.list());
     	session.setAttribute("ProductList",productDAO.list());
     	session.setAttribute("HomeList", productDAO.homeList());
+    	session.setAttribute("CartList", cartDAO.listCart());
     	m.addAttribute("UserClickedshowproduct", "true");
     	/*session.setAttribute("ListProduct", productDAO.getProductByCategoryID(id));*/
     
@@ -93,7 +98,7 @@ public class HomeController {
 		     if (authority.getAuthority().equals(role)) 
 		     {
 		    	 session.setAttribute("UserLoggedIn", "true");
-		    	 /*session.setAttribute("cartsize",cartDAO.cartsize((Integer)session.getAttribute("userid")));*/
+		    	//session.setAttribute("cartsize",cartDAO.cartsize((Integer)session.getAttribute("userid")));
 		    	 return "redirect:/";
 		     }
 		     else 

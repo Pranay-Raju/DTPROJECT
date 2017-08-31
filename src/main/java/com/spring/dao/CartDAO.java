@@ -1,5 +1,7 @@
 package com.spring.dao;
 
+import java.util.List;
+
 import com.spring.model.Cart;
 
 public interface CartDAO {
@@ -9,6 +11,15 @@ public interface CartDAO {
 	
 	public Cart getitem(int prodId,int userId);
 	
-	/*public List<Cart>getAllCart();
-*/
+	public List<Cart>listCart();
+	public boolean removeCartById(int cart_id);
+	
+	public long cartsize(int userId) ;
+	
+	public double CartPrice(int userId) ;
+	
+	public Cart editCartById(int cart_id);
+	public Cart getCartById(int cart_id);
+	
+
 }

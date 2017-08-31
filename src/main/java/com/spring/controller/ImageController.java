@@ -1,53 +1,42 @@
 package com.spring.controller;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.slf4j.*;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.spring.dao.ProductDAO;
-import com.spring.model.Product;
-
-import java.io.IOException;
-
-import javax.servlet.ServletException;
+import java.io.*;
 
 
-@Controller
-//@RequestMapping("/myImage")
 public class ImageController {
-	
-	@Autowired
-	private ProductDAO productDAO;
-	
-	@RequestMapping(value = "/imageDisplay", method = RequestMethod.GET)
-	  public void showImage(@RequestParam("id") int id, HttpServletResponse response,HttpServletRequest request) 
-			  throws ServletException, IOException{
-		
-		System.out.println(id);
-		Product p=productDAO.getProductById(id);
-		System.out.println(id);
-		response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
-		
-		//String yourBase64EncodedBytesString = new String(Base64.encodeBase64(content));
-		//System.out.println(new String(item.getItemImage()));
-		
-		response.getOutputStream().write(p.getImage());
-		
-		System.out.println("Image is");
-	
-		response.getOutputStream().close();
-		/*
-		byte[] encoded=Base64.encodeBase64(item.getItemImage());
-		String encodedString = new String(encoded);
-		request.setAttribute("image", encodedString);
-		ModelMap map = new ModelMap();
-		map.put("image", encodedString);
-		*/
-	
+	private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
+
+
+	public static String uploadImage(@RequestParam("file") MultipartFile file) {
+		String name=null;
+		if (!file.isEmpty()) {
+			try {
+				byte[] bytes = file.getBytes();
+
+				// Creating the directory to store file
+				String rootPath = System.getProperty("catalina.home");
+				File dir = new File(rootPath + File.separator + "tmpFiles");
+				if (!dir.exists())
+					dir.mkdirs();
+
+				// Create the file on server
+				File serverFile = new File(dir.getAbsolutePath()	+ File.separator + name);
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+				stream.write(bytes);
+				stream.close();
+
+				logger.info("Server File Location="+ serverFile.getAbsolutePath());
+
+				return name;
+			} catch (Exception e) {
+				return "You failed to upload " + name + " => " + e.getMessage();
+			}
+		} else {
+			return "You failed to upload " + name+ " because the file was empty.";
+		}
 	}
 	
 

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -15,18 +14,7 @@
 <link href="resources/lib/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet">
 <link href="resources/lib/bootstrap-3.3.6/css/bootstrap.css" rel="stylesheet" />
 
-<!-- scripts -->
-<script src="resources/lib/jquery/jquery-1.10.2.js"></script>
-<script src="resources/lib/bootstrap-3.3.6/js/bootstrap.min.js"></script>
 
-
-
-
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
- -->
 <style type="text/css">
 	.bs-example{
     	margin: 20px;
@@ -85,12 +73,7 @@ ${error}
            	</c:forEach></ul>
            	</li>
                         </ul>
-              
-                    
-                   			<li style="float: right">
-                   			<a href="viewcart"	class="w3-hover-none w3-text-sand w3-hover-text-white">
-                   			<i	class="fa fa-shopping-cart"></i> <span
-										class="w3-badge w3-white">${cartsize}</span></a></li>
+           
 						
                     
                <ul class="nav navbar-nav navbar-right">
@@ -106,22 +89,23 @@ ${error}
  
 						<li><c:url value="/j_spring_security_logout" var="logoutUrl" />
 <a href="${logoutUrl}">Log Out</a><span class="glyphicon glyphicon-log-out"></span></li>
-			</sec:authorize> 
+
+
+
+
+<li> <a href="viewcart">
+<span class="glyphicon glyphicon-shopping-cart"> ${CartPrice},${cartsize}</span>
+</a>
+</li>
+          	</sec:authorize> 
 			
-			
-			
-                   			<li style="float: right">
-                   			<a href="viewcart"	class="w3-hover-none w3-text-sand w3-hover-text-white">
-                   			<i	class="fa fa-shopping-cart"></i> <span
-										class="w3-badge w3-white">${cartsize}</span></a></li>
-					
-				
+		
                              </ul>                 
        
             </div>
         </div>
    </nav>
-    
+    <br><br><br>
     <div class="container">
 		<c:forEach items="${HomeList}" var="product">
 		
@@ -147,23 +131,36 @@ ${error}
     
     
     
-    
-            <div class="modal-footer">
-                <div style="padding:10px"></div>
-            </div>
+    	<c:choose>
+							<c:when test="${!empty SuccessMessage}">
+								<td colspan="2">
+									<div class="alert alert-success fade in">
+										<a href="#" class="close" data-dismiss="alert"
+											aria-label="close">&times;</a>${SuccessMessage}
+									</div>
+								</td>
+							</c:when>
+							<c:when test="${!empty ExistingMessage}">
+								<td colspan="2">
+									<div class="alert alert-danger fade in">
+										<a href="#" class="close" data-dismiss="alert"
+											aria-label="close">&times;</a>${ExistingMessage}
+									</div>
+								</td>
+							</c:when>
+						</c:choose>
 
 
  <c:if test="${LoginPageClicked}">
 		<jsp:include page="LoginPage.jsp"></jsp:include>
 	</c:if>
- <%-- 
+
 <c:choose>
-		<c:when test="${LoginPageClicked}">
-			<c:import url="/WEB-INF/views/LoginPage.jsp"></c:import>
+		<c:when test="${IfViewCartClicked}">
+			<c:import url="/WEB-INF/views/CartPage.jsp"></c:import>
 		</c:when>
 	</c:choose>
 
- --%>
 <c:choose>
 		<c:when test="${IfRegisterClicked}">
 			<c:import url="/WEB-INF/views/RegistrationPage.jsp"></c:import>
@@ -185,17 +182,17 @@ ${error}
 			<c:import url="/WEB-INF/views/ListCategory.jsp"></c:import>
 		</c:when>
 	</c:choose>
-		<%-- 
-	<c:choose>
-		<c:when test="${SupplierPageClicked}">
-			<c:import url="/WEB-INF/views/SupplierPage.jsp"></c:import>
-		</c:when>
-	</c:choose> --%>
+	<script type="text/javascript">
 	
+<$(function() {
+ $('#test').delay(1000).fadeOut();
+});
+
+</script>
+<!-- scripts -->
+<script src="resources/lib/jquery/jquery-1.10.2.js"></script>
+<script src="resources/lib/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+<!-- <script src="resources/lib/bootstrap-3.3.6/js/bootstrap-auto-dismiss-alert.js"></script> -->
 	  
 </body>
-
-
-	
-<%-- <div><%@include file="/WEB-INF/views/LoginPage.jsp"%></div> --%>
 </html>           
