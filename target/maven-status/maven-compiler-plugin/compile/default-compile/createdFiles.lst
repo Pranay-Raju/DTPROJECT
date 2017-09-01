@@ -19,3 +19,4 @@ com\spring\controller\CartController.class
 com\spring\model\User.class
 com\spring\controller\SupplierController.class
 com\spring\config\ApplicationContextConfig.class
+com\spring\controller\ImageController.class

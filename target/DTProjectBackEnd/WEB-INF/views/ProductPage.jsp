@@ -61,7 +61,7 @@
 	</div>
 	
 
-
+<%-- 
 
 	<div class="form-group">
 		<label for="Product Price" class="col-xs-4 control-label">Product instock</label>
@@ -69,7 +69,7 @@
 			<form:input name="id" path="instock" placeholder="Product instock" class="form-control" />
 		</div>
 	</div>
-
+ --%>
 	<!-- 	List of Category	 -->
 
 	
@@ -102,13 +102,13 @@
 	<div class="form-group">
 		<label for="Product Image" class="col-xs-4 control-label">Product Image</label>
 		<div class="col-xs-4">
-		<form:input type="file" path="image" class="form-control" />
+		<input type="file" name="file" class="form-control" />
 		</div>
 	</div>
 	
 
 
-	<div class="form-group">
+	<div class="form-group">  
 	<label for="code" class="col-xs-4 control-label"></label>
 		
 		<div class="col-xs-4">

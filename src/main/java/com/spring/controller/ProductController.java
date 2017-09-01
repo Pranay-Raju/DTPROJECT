@@ -1,7 +1,9 @@
 package com.spring.controller;
 
-
-import java.io.IOException;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,24 +12,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.spring.dao.CategoryDAO;
-import com.spring.dao.ProductDAO;
-import com.spring.dao.SupplierDAO;
+import com.spring.dao.*;
 import com.spring.model.Product;
 
 @Controller
 //@RequestMapping(value="/admin")
 public class ProductController {
 	
-	 static Logger logger = LoggerFactory.getLogger(ProductController.class);
+	 static Logger log = LoggerFactory.getLogger(ProductController.class);
 
 	@Autowired
 	ProductDAO productDAO;
@@ -55,21 +51,55 @@ public class ProductController {
 	public String updateproduct(@ModelAttribute("product") Product product,HttpServletRequest request,Model m,
 			@RequestParam("file") MultipartFile file){
 		
-		String image=ImageController.uploadImage(file);
+		String image=uploadFile(file);
+		//log.info("Server File Location="	+ image
 		if(!image.isEmpty())
 		{
 			product.setImage(image);
 			
 		}
-			
-			
-			
 			product.setInstock(true);
 			  productDAO.saveProduct(product);
 		
 		
         return "redirect:/product";
 	}
+	
+	
+	
+	
+	
+	public  String uploadFile(MultipartFile file)
+	{
+		String name=null;
+		if (!file.isEmpty()) {
+			try {
+				byte[] bytes = file.getBytes();
+
+				// Creating the directory to store file
+				String rootPath = System.getProperty("catalina.home");
+				File dir = new File(rootPath +"wtpwebapps/DTProjectBackEnd/resources/images");
+				if (!dir.exists())
+					dir.mkdirs();
+				  name=String.valueOf(new Date().getTime()+".jpg");
+				 // Create the file on server
+				File serverFile = new File(rootPath + File.separator);
+				BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(serverFile));
+				stream.write(bytes);
+				stream.close();
+
+				log.info("Server File Location="	+ serverFile.getAbsolutePath());
+
+				return  name;
+			} catch (Exception e) {
+				return "You failed to upload " + name + " => " + e.getMessage();
+			}
+		} else {
+			return "You failed to upload " + name+ " because the file was empty.";
+		}
+	}
+
 	
 	
 	@RequestMapping(value="editproduct/{id}",method=RequestMethod.GET)

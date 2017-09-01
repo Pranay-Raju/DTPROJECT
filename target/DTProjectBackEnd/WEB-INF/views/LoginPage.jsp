@@ -1,59 +1,41 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" isELIgnored="false"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-  <c:url var="actionUrl" value="j_spring_security_check" />  
-<div class="container"  >
-	<!-- Trigger the modal with a button -->
-	<!-- Modal -->
-	<div class="modal fade" id="login" role="dialog">
-		<div class="modal-dialog modal-sm">
 
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header" style="padding: 15px 35px;">
-					<h4>ECommerce Login</h4>
-				</div>
-				<div class="modal-body" style="padding: 35px 35px;">
-			<form  method="post" action="${actionUrl }" class="form-horizontal" >
-				
-				
-				<%-- 	<form action="${pageContext.request.contextPath}/j_spring_security_check" method="post"> --%>
-						<div class="form-group form-group-sm">
+<form  method="post" action="j_spring_security_check" class="form-horizontal" >
 
-							<div class="input-group">
-								<div class="input-group-addon">
-									<i class="glyphicon glyphicon-user"></i>
-								</div>
-								<input type="text" class="form-control"
-									placeholder="Enter Username" id="j_username" name="j_username">
-							</div>
-							<br>
-							<div class="input-group">
-								<div class="input-group-addon">
-									<i class="glyphicon glyphicon-eye-open"></i>
-								</div>
-								<input type="password" class="form-control"
-									placeholder="Enter Password" id="j_password" name="j_
-									
-									password" >
-							</div>
-							<br>
-						</div>
-						<button type="submit" class="btn btn-success  btn-block">
-							<span class="glyphicon glyphicon-off"></span> Log In
-						</button>
-					</form>
-				</div>
-			</div>
+	
+	
+
+	<div class="form-group">
+		<label for="User Email" class="col-xs-4 control-label">Email</label>
+		<div class="col-xs-4">
+			<input name="j_username" type="email"  placeholder=" User Email" class="form-control" />
 		</div>
 	</div>
-</div>
-<script>
-	$(document).ready(function() {
-		$("#log").click(function() {
-			$("#login").modal();
-			});
-		});
-</script>
+
+	<div class="form-group">
+		<label for="code" class="col-xs-4 control-label">Password</label>
+		<div class="col-xs-4">
+			<input name="j_password"  type="password" placeholder="User Password" class="form-control" />
+		</div>
+	</div>
+
+
+
+	<div class="form-group">
+	<label for="code" class="col-xs-4 control-label"></label>
+		
+		<div class="col-xs-4">
+		
+			
+	
+		<input type="submit" value="Login" id="btn-add" class="btn btn-primary" >
+	
+	
+
+		
+		</div>
+	</div>
+</form>
