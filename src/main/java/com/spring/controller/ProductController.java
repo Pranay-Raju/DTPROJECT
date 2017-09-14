@@ -77,7 +77,7 @@ public class ProductController {
 				byte[] bytes = file.getBytes();
 
 				// Creating the directory to store file
-				String rootPath = System.getProperty("catalina.home");
+				String rootPath = System.getProperty("catalina.base");
 				File dir = new File(rootPath +"wtpwebapps/DTProjectBackEnd/resources/images");
 				if (!dir.exists())
 					dir.mkdirs();
